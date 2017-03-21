@@ -12,6 +12,16 @@ source("tpms.R")
 
 ## Odyssey
 
+From http://opengarages.org/handbook/ebook/, TPMS data can be exploted in the following ways: 
+
+• Send an impossible condition to the engine control unit (ECU), causing a fault that could then be exploited
+• Trick the ECU into overcorrecting for spoofed road conditions
+• Put the TPMS receiver or the ECU into an unrecoverable state that might cause a driver to pull over to check for a reported flat or that might even shut down the vehicle
+• Track a vehicle based on the TPMS unique IDs
+• Spoof the TPMS signal to set off internal alarms 
+
+This project uses the code at https://github.com/jboone/gr-tpms to capture TPMS data. The author's talk, using an earlier version of the code, can be found here: http://www.youtube.com/watch?v=bKqiq2Y43Wg. Previous research on the topic can be found at https://web.wpi.edu/Pubs/E-project/Available/E-project-091115-154458/unrestricted/MQP_piscitelli_arnold_2015.pdf, and security vulnerabilities discussed in more depth at http://www.winlab.rutgers.edu/~gruteser/papers/xu_tpms10.pdf/.
+
 Distribution of tire IDs
 
 ```{r odyssey}
