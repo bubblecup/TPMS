@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"TPMS\"\nauthor: \"SS\"\ndate: \"3/16/2017\"\noutput: pdf_document\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = FALSE, cache=T)\nsource(\"tpms.R\")\n```\n\n## Odyssey\n\nDistribution of tire IDs\n\n```{r odyssey}\nodyssey <- analyzeOdyssey()\ntable(odyssey$`tireID = substr(packet, 25, 56)`)\n```\n\nFirst 3 bytes, statistical distribution\n\n```{r}\nbytes <- lapply(seq.int(1,3), function(x) {\n        byte <- analyzePacket(odyssey$packet,x*8-7,x*8)\n        cat(c(\"Byte \", x, \":\"), sep=\"\", fill=T)\n        print(table(byte),dnn=NULL)\n        #cat(\"By trip\")\n        #print(table(odyssey$trip,byte,odyssey$tireID,dnn=NULL))\n        byte\n})\n```\n\n```{r}\nplotCountBy(odyssey, `tireID = substr(packet, 25, 56)`, bytes[[1]]) + ggtitle(\"Byte 1 Distribution By Tire ID\")\n```\n\n```{r}\nplotCountBy(odyssey,`tireID = substr(packet, 25, 56)`) + ggtitle(\"Tire Distribution By Trip\")\n```\n\n```{r}\nodyssey.all <- analyzeOdyssey(T)\nplotCountBy(odyssey.all,preamble) + ggtitle(\"Preamble Distribution By Trip\")\n```\n\n```{r}\nplotCountBy(odyssey,`tireID = substr(packet, 25, 56)`,bitrate) + ggtitle(\"Tire ID Distribution By Bitrate\")\n```",
+    "created" : 1489782340724.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3981585674",
+    "id" : "FB849053",
+    "lastKnownWriteTime" : 1490122479,
+    "last_content_update" : 1490122479667,
+    "path" : "~/Desktop/TPMS/tpms.Rmd",
+    "project_path" : "tpms.Rmd",
+    "properties" : {
+        "last_setup_crc32" : "D1A3DDEAd1ae9ab6"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

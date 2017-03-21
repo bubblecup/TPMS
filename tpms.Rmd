@@ -1,0 +1,50 @@
+---
+title: "TPMS"
+author: "SS"
+date: "3/16/2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache=T)
+source("tpms.R")
+```
+
+## Odyssey
+
+Distribution of tire IDs
+
+```{r odyssey}
+odyssey <- analyzeOdyssey()
+table(odyssey$`tireID = substr(packet, 25, 56)`)
+```
+
+First 3 bytes, statistical distribution
+
+```{r}
+bytes <- lapply(seq.int(1,3), function(x) {
+        byte <- analyzePacket(odyssey$packet,x*8-7,x*8)
+        cat(c("Byte ", x, ":"), sep="", fill=T)
+        print(table(byte),dnn=NULL)
+        #cat("By trip")
+        #print(table(odyssey$trip,byte,odyssey$tireID,dnn=NULL))
+        byte
+})
+```
+
+```{r}
+plotCountBy(odyssey, `tireID = substr(packet, 25, 56)`, bytes[[1]]) + ggtitle("Byte 1 Distribution By Tire ID")
+```
+
+```{r}
+plotCountBy(odyssey,`tireID = substr(packet, 25, 56)`) + ggtitle("Tire Distribution By Trip")
+```
+
+```{r}
+odyssey.all <- analyzeOdyssey(T)
+plotCountBy(odyssey.all,preamble) + ggtitle("Preamble Distribution By Trip")
+```
+
+```{r}
+plotCountBy(odyssey,`tireID = substr(packet, 25, 56)`,bitrate) + ggtitle("Tire ID Distribution By Bitrate")
+```
