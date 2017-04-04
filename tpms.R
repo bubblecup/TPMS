@@ -2,6 +2,7 @@ suppressMessages({
         require(dplyr)  
         require(lubridate)
         require(ggplot2)
+        require(compositions)
 })
 
 # Reads in the file in the desired format
