@@ -47,7 +47,7 @@ plotCountBy(odyssey, `tireID = substr(packet, 25, 56)`, bytes[[1]]) + ggtitle("B
 ```
 
 ```{r}
-plotCountBy(odyssey,`tireID = substr(packet, 25, 56)`) + ggtitle("Tire Distribution By Trip")
+plotCountBy(odyssey,`tireID = substr(packet, 25, 56)`) + ggtitle("Tire Distribution By Trip") 
 ```
 
 ```{r}
@@ -57,4 +57,16 @@ plotCountBy(odyssey.all,preamble) + ggtitle("Preamble Distribution By Trip")
 
 ```{r}
 plotCountBy(odyssey,`tireID = substr(packet, 25, 56)`,bitrate) + ggtitle("Tire ID Distribution By Bitrate")
+```
+
+```{r}
+# Get 4 most commonly occuring tire IDs
+odyssey.mine <- odyssey %>% count(`tireID = substr(packet, 25, 56)`) %>% top_n(4, n)
+odyssey.mine <- filter(odyssey, `tireID = substr(packet, 25, 56)` %in% 
+                               odyssey.mine$`tireID = substr(packet, 25, 56)`)
+plotCountBy(odyssey.mine, `tireID = substr(packet, 25, 56)`) + ggtitle("Tire Distribution By Trip, Filtered")
+bytes.mine <- lapply(seq.int(1,3), function(x) {analyzePacket(odyssey.mine$packet,x*8-7,x*8)})
+plotCountBy(odyssey.mine, `tireID = substr(packet, 25, 56)`, bytes.mine[[1]]) + ggtitle("Byte 1 by Tire ID")
+plotCountBy(odyssey.mine, `tireID = substr(packet, 25, 56)`, bytes.mine[[2]]) + ggtitle("Byte 2 by Tire ID")
+plotCountBy(odyssey.mine, `tireID = substr(packet, 25, 56)`, bytes.mine[[3]]) + ggtitle("Byte 3 by Tire ID")
 ```
