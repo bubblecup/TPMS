@@ -80,5 +80,11 @@ plotCountBy(odyssey.mine, sensorID, byte1) + ggtitle("Byte 1 by Sensor ID")
 plotCountBy(odyssey.mine, sensorID, byte2) + ggtitle("Byte 2 by Sensor ID")
 plotCountBy(odyssey.mine, sensorID, byte3) + ggtitle("Byte 3 by Sensor ID")
 
-#ggplot(odyssey.mine, aes(date, byte2)) + geom_line() + facet_grid(trip~sensorID)
+ggplot(odyssey.mine, aes(date, byte2)) + geom_point(aes(color=sensorID)) + 
+        facet_grid(.~trip, scales="free_x") + ggtitle("Byte2 by trip") +
+        theme(legend.position="bottom")
+
+ggplot(odyssey.mine, aes(date, byte3)) + geom_point(aes(color=sensorID)) + 
+        facet_grid(.~trip, scales="free_x") + ggtitle("Byte3 by trip") + 
+        theme(legend.position="bottom")
 ```
