@@ -24,9 +24,17 @@ From http://opengarages.org/handbook/ebook/, TPMS data can be exploted in the fo
 
 • Spoof the TPMS signal to set off internal alarms 
 
-This project uses the code at https://github.com/jboone/gr-tpms to capture TPMS data. The author's talk, using an earlier version of the code, can be found here: http://www.youtube.com/watch?v=bKqiq2Y43Wg. Previous research on the topic can be found at https://web.wpi.edu/Pubs/E-project/Available/E-project-091115-154458/unrestricted/MQP_piscitelli_arnold_2015.pdf, and security vulnerabilities discussed in more depth at http://www.winlab.rutgers.edu/~gruteser/papers/xu_tpms10.pdf/.
+This project uses the code at https://github.com/jboone/gr-tpms to capture TPMS data. The author's talk, using an earlier version of the code, can be found here: http://www.youtube.com/watch?v=bKqiq2Y43Wg.
 
-Distribution of tire IDs
+Previous research on the topic can be found at:
+
+• https://web.wpi.edu/Pubs/E-project/Available/E-project-091115-154458/unrestricted/MQP_piscitelli_arnold_2015.pdf 
+
+• https://web.wpi.edu/Pubs/E-project/Available/E-project-030416-121729/unrestricted/MQP_Final_Paper.pdf
+
+• http://www.winlab.rutgers.edu/~gruteser/papers/xu_tpms10.pdf
+
+Distribution of sensor IDs
 
 ```{r odyssey}
 odyssey <- analyzeOdyssey() %>% rename(sensorID=`tireID = substr(packet, 25, 56)`)
