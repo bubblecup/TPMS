@@ -24,7 +24,7 @@ From http://opengarages.org/handbook/ebook/, TPMS data can be exploted in the fo
 
 • Spoof the TPMS signal to set off internal alarms 
 
-This project uses the code at https://github.com/jboone/gr-tpms to capture TPMS data. The author's talk, using an earlier version of the code, can be found here: http://www.youtube.com/watch?v=bKqiq2Y43Wg.
+This project uses the code at https://github.com/jboone/gr-tpms to capture bursts at 315 MHz, using a 400 kHz sampling rate. The author's talk, using an earlier version of the code, can be found here: http://www.youtube.com/watch?v=bKqiq2Y43Wg.
 
 Previous research on the topic can be found at:
 
